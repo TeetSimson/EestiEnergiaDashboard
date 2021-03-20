@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    background-color: #ecf6fa;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+}
+
+h1{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.WhiteBox {
+    margin-top: 60px;
+    display: block;
+    background-color: rgb(255, 255, 255);
+    width: 70%;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    border-radius: 15px;
+}
+
+.Title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 60px;
+}
+
+.SubTitle {
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.RadioButtons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.TwoBoxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.SliderBox {
+    display: block;
+    width: 40%;
+    margin-top: 40px;
+    margin-right: 80px;
+    margin-left: 80px;
+    min-width: 400px;
+}
+
+.Summary {
+    display: block;
+    margin-top: 40px;
+    width: 40%;
+    min-width: 300px;
+}
+
+.SubmitSection{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #34b233;
+    border: none;
+    width: 280px;
+    color: white;
+    border-radius: 50px;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+.SubmitTxt{
+    display: inline-block;
+    font-size: 20px;
+}
+
+.Arrow {
+    display: inline-block;
+    width: 18px;
+    margin-top: -5px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+button:hover {
+    background-color: #60c760;
+}

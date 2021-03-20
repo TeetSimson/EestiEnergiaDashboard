@@ -1,0 +1,48 @@
+.LineBox {
+    width: 100%;
+}
+
+.Colored {
+    background-color: #f7fafa;
+}
+
+.Line{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    padding-left: 12px;
+}
+
+.LeftText {
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.RightText {
+    display: inline-block;
+    float: right;
+    margin-top: 15px;
+    margin-right: 30px;
+}
+
+.Total {
+    font-size: 20px;
+}
+
+.TotalSum{
+    color: #34b233;
+    font-size: 26px;
+    margin-top: 10px;
+    margin-right: 30px;
+}
+
+.Currency{
+    display: inline-block;
+    margin: 0;
+    font-size: 20px;
+}
+
+.Secondary{
+    font-size: 18px;
+}

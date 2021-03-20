@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Styles/Style.css">
+    <link rel="stylesheet" href="./Styles/Checkboxes.css">
+    <link rel="stylesheet" href="./Styles/SliderBox.css">
+    <link rel="stylesheet" href="./Styles/Summary.css">
+    <link rel="stylesheet" href="./Styles/Slider.css">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="https://res.cloudinary.com/enefit/image/upload/f_auto,q_auto:best/v1584352816/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/enefit/image/upload/f_auto,q_auto:best/v1584352816/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://res.cloudinary.com/enefit/image/upload/f_auto,q_auto:best/v1584352816/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/enefit/image/upload/f_auto,q_auto:best/v1584352816/favicon/favicon-16x16.png">
+
+    <script src="./Scripts/script.js"></script>
+    <script>var value = null</script>
+    
+    <title>Eesti Energia</title>
+</head>
+<body>
+    <div class="WhiteBox">
+        <div class="Title">
+            <h1>Kuumakse kalkulaator</h1>
+        </div>
+        <h2 class="SubTitle">Teenus:</h2>
+        <div class="RadioButtons">
+           
+              <label class="CheckButton RadioContainer">
+                <p class="BoxTitle">Päikesepaneelid</p> 
+                <input type="radio" 
+                    id="Sun" 
+                    name="Category" 
+                    value="Sun" 
+                    onchange="SunSelect()"
+                    checked
+                />
+                <span class="checkmark"></span>
+              </label>
+              
+              <label class="CheckButton RadioContainer">
+                <p class="BoxTitle">Soojuspump</p> 
+                <input type="radio" 
+                    id="Pump" 
+                    name="Category" 
+                    value="Pump"
+                    onchange="PumpSelect()"
+                />
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="CheckButton RadioContainer">
+                <p class="BoxTitle">Elektritööd või<br>gaasitööd</p> 
+                <input type="radio" 
+                    id="Gas" 
+                    name="Category" 
+                    value="Gas"
+                    onchange="GasSelect()"
+                />
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="CheckButton RadioContainer">
+                <p class="BoxTitle">Off-Grid võrguvaba<br>elekter</p> 
+                <input type="radio" 
+                    id="OffGrid" 
+                    name="Category" 
+                    value="OffGrid"
+                    onchange="OffGridSelect()"
+                />
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="CheckButton RadioContainer">
+                <p class="BoxTitle">Elektriautode<br>laadimislahendused</p> 
+                <input type="radio" 
+                    id="ElectricCars" 
+                    name="Category" 
+                    value="ElectricCars"
+                    onchange="ElectricCarsSelect()"
+                />
+                <span class="checkmark"></span>
+            </label>
+
+        </div>
+        <div class="TwoBoxes">
+            <div class="SliderBox">
+                <h2 class="SubTitle">Summa:</h2>
+                <div class="Slider">
+                    <div class="container">
+                        <div class="slider-container">
+                            <input type="text" id="slider3" class="slider" />
+                        </div>
+                       
+                    </div>
+                    
+                    <script src="./Scripts/rSlider.min.js"></script>
+                    <script>
+                        (function () {
+                            'use strict';
+                            
+                            var init = function () {                
+                
+                                var slider3 = new rSlider({
+                                    target: '#slider3',
+                                    values: {min: 300, max: 25000},
+                                    step: 10,
+                                    range: false,
+                                    set: [8000],
+                                    scale: true,
+                                    labels: false,
+                                    onChange: function (vals) {
+                                        console.log(vals);
+                                        value = vals;
+                                    }
+                                });
+                
+                            };
+                            window.onload = init;
+                        })();
+                    </script>
+                </div>
+                <div class="Period">
+                    <h2>Periood:</h2>
+
+                    <select name="PeriodDrop" id="PeriodDrop">
+                      <option value="volvo">Volvo</option>
+                      <option value="saab">Saab</option>
+                      <option value="mercedes">Mercedes</option>
+                      <option value="audi">Audi</option>
+                    </select>
+
+                    </select>
+                </div>
+                <div class="Deposit">
+                    <h2>Sissemakse (eur):</h2>
+                    <input type="number" id="DepositInput" placeholder="-">
+                </div>
+            </div>
+            <div class="Summary">
+                <div class="LineBox">
+                    <div class="Line">
+                        <p class="LeftText">Intress</p>
+                        <h2 class="RightText">7.90 %</h2>
+                    </div>
+                </div>
+                <div class="LineBox Colored">
+                    <div class="Line">
+                        <p class="LeftText">Lepingutasu</p>
+                        <h2 class="RightText">0 <p class="Currency Secondary">€</p></h2>
+                    </div>
+                </div>
+                <div class="LineBox">
+                    <div class="Line">
+                        <p class="LeftText">Igakuine haldustasu</p>
+                        <h2 class="RightText">0 <p class="Currency Secondary">€</p></h2>
+                    </div>
+                </div>
+                <div class="LineBox Colored">
+                    <div class="Line">
+                        <p class="LeftText">Periood</p>
+                        <h2 class="RightText">60 kuud</h2>
+                    </div>
+                </div>
+                <div class="LineBox">
+                    <div class="Line">
+                        <p class="LeftText">Projekti maksumus</p>
+                        <h2 class="RightText">20 184 <p class="Currency Secondary">€</p></h2>
+                    </div>
+                </div>
+                <div class="LineBox Colored">
+                    <div class="Line">
+                        <h2 class="LeftText Total">Kuumakse</h2>
+                        <h2 class="RightText TotalSum">80.00 <p class="Currency">€</p></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="SubmitSection">
+            <button class="SubmitBtn">
+                <h1 class="SubmitTxt">Esitan taotluse</h1>
+                <img class="Arrow" src="./Styles/arrow-point-to-right.png" alt="Arrow"/>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
