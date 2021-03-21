@@ -64,7 +64,7 @@
     -webkit-appearance: none; 
     appearance: none;
     width: 100%;
-    height: 54px;
+    height: 6vh;
     margin-right: 16px;
     border: 1px solid rgba(0, 0, 0, 0.288);
     border-bottom: 2px solid rgba(0, 0, 0, 0.397);
@@ -83,11 +83,12 @@
 #DepositInput{
     -webkit-appearance: none; 
     appearance: none;
-    height: 49px;
+    height: calc(5vh + 6px);
     border: 1px solid rgba(0, 0, 0, 0.288);
     border-bottom: 2px solid rgba(0, 0, 0, 0.397);
     background-color: #f7fafa;
     padding-left: 10px;
+    padding-bottom: 0;
     width: 100%;
 }
 
