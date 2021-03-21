@@ -22,12 +22,13 @@
     <script src="./Scripts/script.js"></script>
     <script>
         let sliderValue = null;
-        let CreditValue = 5000/100-3;
+        const setSliderValue = 5000; //// CHANGE THIS //// Initial slider value
+        let CreditValue = setSliderValue/100-3; 
         let slider = null;
-        let checkbox = 'Sun';
-        let perc = 1; // Intrest percentage
-        let monthFee = 0; // Monthly fee
-        let hidden = false;
+        let checkbox = 'Sun'; //// CHANGE THIS //// Päiksepaneelid checked initially 'Sun'; 'Pump'; 'Gas'; 'OffGrid'; 'ElectricCars'; 
+        let perc = 1; // Default Intrest percentage
+        let monthFee = 0; // Default Monthly fee
+        let hidden = false; // If hidden is true then the month list is 6-72 otherwise 6-120
 
     </script>
     
@@ -114,8 +115,9 @@
                         (function () {
                             'use strict';
                             
-                            var init = function () {                
-                
+                            var init = function () {   
+                                             
+                                // Creating New slider object
                                 slider = new rSlider({
                                     target: '#slider3',
                                     values: {min: 300, max: 25000},

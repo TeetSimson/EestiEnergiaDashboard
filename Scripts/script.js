@@ -1,46 +1,61 @@
+// PV
 function SunSelect() {
     lastChangedBox.setAttribute("style",'background: white;');
     lastChangedBox = document.getElementById("SunBox")
     lastChangedBox.setAttribute("style",'background: #f7fafa;');
     checkbox = 'Sun';
     onInputChange();
-    periodValue = document.getElementById("PeriodDrop").value = 60;
+    ///////// CHANGE THIS /////////
+    periodValue = document.getElementById("PeriodDrop").value = 60; // Default month value
+    ///////////// END /////////////
 }
 
+// Soojuspumbad
 function PumpSelect() {
     lastChangedBox.setAttribute("style",'background: white;');
     lastChangedBox = document.getElementById("PumpBox")
     lastChangedBox.setAttribute("style",'background: #f7fafa;');
     checkbox = 'Pump';
     onInputChange();
-    periodValue = document.getElementById("PeriodDrop").value = 48;
+    ///////// CHANGE THIS /////////
+    periodValue = document.getElementById("PeriodDrop").value = 48; // Default month value
+    ///////////// END /////////////
 }
 
+// Elektri- ja gaasitööd
 function GasSelect() {
     lastChangedBox.setAttribute("style",'background: white;');
     lastChangedBox = document.getElementById("GasBox")
     lastChangedBox.setAttribute("style",'background: #f7fafa;');    
     checkbox = 'Gas';
     onInputChange();
-    periodValue = document.getElementById("PeriodDrop").value = 48;
+    ///////// CHANGE THIS /////////
+    periodValue = document.getElementById("PeriodDrop").value = 48; // Default month value
+    ///////////// END /////////////
 }
 
+// Võrguvaba elektrijaam Off-grid
 function OffGridSelect() {
     lastChangedBox.setAttribute("style",'background: white;');
     lastChangedBox = document.getElementById("OffGridBox")
     lastChangedBox.setAttribute("style",'background: #f7fafa;');    
     checkbox = 'OffGrid';
     onInputChange();
-    periodValue = document.getElementById("PeriodDrop").value = 60;
+    ///////// CHANGE THIS /////////
+    periodValue = document.getElementById("PeriodDrop").value = 60; // Default month value
+    ///////////// END /////////////
 }
 
+// Elektriautode laadijad
 function ElectricCarsSelect() {
     lastChangedBox.setAttribute("style",'background: white;');
     lastChangedBox = document.getElementById("ElectricCarsBox")
     lastChangedBox.setAttribute("style",'background: #f7fafa;');    
     checkbox = 'ElectricCars';
     onInputChange();
-    periodValue = document.getElementById("PeriodDrop").value = 48;
+    ///////// CHANGE THIS /////////
+    periodValue = document.getElementById("PeriodDrop").value = 48; // Default month value
+    ///////////// END /////////////
 }
 
 function onInputChange() {
@@ -75,7 +90,8 @@ function onInputChange() {
 
     projectCostValue -= deposit;
 
-    // Check which service is checked
+    // Check which service is checked and 
+    // assign values according to credit slider value
 
     // PV
     if (checkbox == 'Sun') {
@@ -96,13 +112,19 @@ function onInputChange() {
             hidden = false;
         }
 
+        ///////// CHANGE THIS /////////
+        perc = 1.079;
+        contractFee = 50;
+        monthlyFeeValue = 1;
         intrest.textContent = '7,90 %';
-        fee.textContent = '50 €';
-        monthlyFee.textContent = '1 €';
+        ///////////// END /////////////
+
+        fee.textContent = contractFee + ' €';
+        monthlyFee.textContent = monthlyFeeValue + ' €';
         period.textContent = periodValue + ' kuud';
         projectCost.textContent = projectCostValue + ' €';
 
-        let monthlyPaymentValue = parseFloat(((projectCostValue * 1.079) / periodValue) + 50 + periodValue);
+        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) + contractFee + periodValue * monthlyFeeValue) / periodValue);
         monthlyPayment.textContent = monthlyPaymentValue.toFixed(2);
         monthlyPayment.appendChild(eur)
     
@@ -128,10 +150,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '7,90 %';
-            fee.textContent = '30 €';
             perc = 1.079;
             contractFee = 30;
+            monthlyFeeValue = 1;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else if (projectCostValue < 6000) {
             if (!hidden) {
@@ -153,10 +181,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '6,50 %';
-            fee.textContent = '20 €';
             perc = 1.065;
             contractFee = 20;
+            monthlyFeeValue = 1;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else {
             if (hidden) {
@@ -179,16 +213,22 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '5,90 %';
-            fee.textContent = '20 €';
             perc = 1.059;
             contractFee = 20;
+            monthlyFeeValue = 1;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         monthlyFee.textContent = '1 €';
         period.textContent = periodValue + ' kuud';
         projectCost.textContent = projectCostValue + ' €';
 
-        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee + periodValue);
+        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) + contractFee + periodValue * monthlyFeeValue) / periodValue);
         monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
 
     // Elektriautode laadijad
@@ -213,10 +253,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '5,90 %';
-            fee.textContent = '50 €';
             perc = 1.059;
             contractFee = 50;
+            monthlyFeeValue = 2;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else if (projectCostValue < 6000) {
             if (!hidden) {
@@ -238,10 +284,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '4,50 %';
-            fee.textContent = '40 €';
             perc = 1.045;
             contractFee = 40;
+            monthlyFeeValue = 2;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else {
             if (hidden) {
@@ -264,16 +316,22 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '3,90 %';
-            fee.textContent = '30 €';
             perc = 1.039;
             contractFee = 30;
+            monthlyFeeValue = 2;
+            ///////////// END ///////////// 
+            
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+            
         }
         monthlyFee.textContent = '2 €';
         period.textContent = periodValue + ' kuud';
         projectCost.textContent = projectCostValue + ' €';
 
-        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee + (2*periodValue));
+        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) + contractFee + periodValue * monthlyFeeValue) / periodValue);
         monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
 
     // Võrguvaba elektrijaam Off-grid
@@ -298,10 +356,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '7,90 %';
-            fee.textContent = '30 €';
             perc = 1.059;
             contractFee = 30;
+            monthlyFeeValue = 0;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else if (projectCostValue < 6000) {
             if (!hidden) {
@@ -323,10 +387,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '6,50 %';
-            fee.textContent = '20 €';
             perc = 1.045;
             contractFee = 20;
+            monthlyFeeValue = 0;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else {
             if (hidden) {
@@ -348,17 +418,23 @@ function onInputChange() {
                 hidden = false;
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
-
+            
+            ///////// CHANGE THIS /////////
             intrest.textContent = '5,90 %';
-            fee.textContent = '20 €';
             perc = 1.039;
             contractFee = 20;
+            monthlyFeeValue = 0;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         monthlyFee.textContent = '0 €';
         period.textContent = periodValue + ' kuud';
         projectCost.textContent = projectCostValue + ' €';
 
-        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee);
+        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) + contractFee + periodValue * monthlyFeeValue) / periodValue);
         monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
 
     // Elektri- ja gaasitööd     
@@ -383,11 +459,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '9,90 %';
-            fee.textContent = '30 €';
             perc = 1.099;
-            contractFee = 30 + periodValue;
-            monthlyFee.textContent = '1 €';
+            contractFee = 30;
+            monthlyFeeValue = 1;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         } 
         else if (projectCostValue < 2000) {
             if (!hidden) {
@@ -409,11 +490,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '8,90 %';
-            fee.textContent = '20 €';
             perc = 1.089;
-            contractFee = 20 + periodValue;
-            monthlyFee.textContent = '1 €';
+            contractFee = 20;
+            monthlyFeeValue = 1;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else if (projectCostValue < 6000) {
             if (!hidden) {
@@ -435,11 +521,16 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '7,50 %';
-            fee.textContent = '20 €';
             perc = 1.075;
             contractFee = 20;
-            monthlyFee.textContent = '0 €';
+            monthlyFeeValue = 0;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+
         }
         else {
             if (hidden) {
@@ -462,16 +553,21 @@ function onInputChange() {
                 periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
+            ///////// CHANGE THIS /////////
             intrest.textContent = '6,90 %';
-            fee.textContent = '20 €';
-            perc = 1.069;
+            perc = 1.069; 
             contractFee = 20;
-            monthlyFee.textContent = '0 €';
+            monthlyFeeValue = 0;
+            ///////////// END /////////////
+
+            fee.textContent = contractFee + ' €';
+            monthlyFee.textContent = monthlyFeeValue + ' €';
+        
         }
         period.textContent = periodValue + ' kuud';
         projectCost.textContent = projectCostValue + ' €';
 
-        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee);
+        let monthlyPaymentValue = parseFloat(((projectCostValue * perc) + contractFee + periodValue * monthlyFeeValue) / periodValue);
         monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
     }
     
