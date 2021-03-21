@@ -117,7 +117,7 @@ button:hover {
     background-color: #60c760;
 }
 
-strong {
+.RedStar {
     color: red;
 }
 
@@ -156,6 +156,10 @@ strong {
     .WhiteBox{
         padding: 50px;
     }
+
+    h2{
+        font-size: 15px;
+    }
 }
 
 @media only screen and (max-width:470px) {
@@ -164,7 +168,22 @@ strong {
         min-width: 300px;
     }
 
-    .WhiteBox{
+    .WhiteBox {
         padding: 45px;
+    }
+}
+
+@media only screen and (max-width:470px) {
+    .SliderBox {
+        width: 250px;
+        min-width: 200px;
+    }
+
+    .WhiteBox {
+        padding: 40px;
+    }
+
+    h2{
+        font-size: 12px;
     }
 }
