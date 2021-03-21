@@ -20,12 +20,21 @@
     <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/enefit/image/upload/f_auto,q_auto:best/v1584352816/favicon/favicon-16x16.png">
 
     <script src="./Scripts/script.js"></script>
-    <script>var value = null</script>
+    <script>
+        let sliderValue = null;
+        let CreditValue = 5000/100-3;
+        let slider = null;
+        let checkbox = 'Sun';
+        let perc = 1; // Intrest percentage
+        let monthFee = 0; // Monthly fee
+        let hidden = false;
+
+    </script>
     
     <title>Eesti Energia</title>
 </head>
 <body>
-    <div class="WhiteBox">
+    <form class="WhiteBox">
         <div class="Title">
             <h1>Kuumakse kalkulaator</h1>
         </div>
@@ -107,83 +116,114 @@
                             
                             var init = function () {                
                 
-                                var slider3 = new rSlider({
+                                slider = new rSlider({
                                     target: '#slider3',
                                     values: {min: 300, max: 25000},
-                                    step: 10,
+                                    step: 100,
                                     range: false,
-                                    set: [8000],
+                                    set: [5000],
                                     scale: true,
                                     labels: false,
                                     onChange: function (vals) {
-                                        console.log(vals);
-                                        value = vals;
-                                    }
+                                        sliderValue = vals;
+                                        onInputChange();
+                                    },
+                                    CreditValue: CreditValue
                                 });
                 
                             };
                             window.onload = init;
+
+                            
                         })();
+
                     </script>
                 </div>
                 <div class="Period">
                     <h2>Periood:</h2>
 
-                    <select name="PeriodDrop" id="PeriodDrop">
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="mercedes">Mercedes</option>
-                      <option value="audi">Audi</option>
+                    <select name="PeriodDrop" 
+                        id="PeriodDrop" 
+                        onchange="onInputChange()" 
+                        required
+                    >
+                      <option value="6">6 kuud</option>
+                      <option value="12">12 kuud</option>
+                      <option value="18">18 kuud</option>
+                      <option value="24">24 kuud</option>
+                      <option value="30">30 kuud</option>
+                      <option value="36">36 kuud</option>
+                      <option value="42">42 kuud</option>
+                      <option value="48">48 kuud</option>
+                      <option value="54">54 kuud</option>
+                      <option value="60" selected="selected">60 kuud</option>
+                      <option value="66">66 kuud</option>
+                      <option value="72">72 kuud</option>
+                      <option value="78">78 kuud</option>
+                      <option value="84">84 kuud</option>
+                      <option value="90">90 kuud</option>
+                      <option value="96">96 kuud</option>
+                      <option value="102">102 kuud</option>
+                      <option value="108">108 kuud</option>
+                      <option value="114">114 kuud</option>
+                      <option value="120">120 kuud</option>
                     </select>
 
                     </select>
                 </div>
                 <div class="Deposit">
                     <h2>Sissemakse (eur):</h2>
-                    <input type="number" id="DepositInput" placeholder="-">
+                    <input type="number" 
+                        id="DepositInput" 
+                        min="0" max="25000"
+                        step="1" 
+                        onchange="onInputChange()" 
+                        placeholder="-" 
+                        required
+                    >
                 </div>
             </div>
             <div class="Summary">
                 <div class="LineBox">
                     <div class="Line">
                         <p class="LeftText">Intress</p>
-                        <h2 class="RightText">7.90 %</h2>
+                        <h2 id="Intrest" class="RightText">7.90 %</h2>
                     </div>
                 </div>
                 <div class="LineBox Colored">
                     <div class="Line">
                         <p class="LeftText">Lepingutasu</p>
-                        <h2 class="RightText">0 <p class="Currency Secondary">€</p></h2>
+                        <h2 id="Fee" class="RightText">50 <p class="Currency Secondary">€</p></h2>
                     </div>
                 </div>
                 <div class="LineBox">
                     <div class="Line">
                         <p class="LeftText">Igakuine haldustasu</p>
-                        <h2 class="RightText">0 <p class="Currency Secondary">€</p></h2>
+                        <h2 id="MonthlyFee" class="RightText">1 <p class="Currency Secondary">€</p></h2>
                     </div>
                 </div>
                 <div class="LineBox Colored">
                     <div class="Line">
                         <p class="LeftText">Periood</p>
-                        <h2 class="RightText">60 kuud</h2>
+                        <h2 id="Period" class="RightText">60 kuud</h2>
                     </div>
                 </div>
                 <div class="LineBox">
                     <div class="Line">
                         <p class="LeftText">Projekti maksumus</p>
-                        <h2 class="RightText">20 184 <p class="Currency Secondary">€</p></h2>
+                        <h2 id="ProjectCost" class="RightText">20 184 <p class="Currency Secondary">€</p></h2>
                     </div>
                 </div>
                 <div class="LineBox Colored">
                     <div class="Line">
                         <h2 class="LeftText Total">Kuumakse</h2>
-                        <h2 class="RightText TotalSum">80.00 <p class="Currency">€</p></h2>
+                        <h2 id="MonthlyPayment" class="RightText TotalSum">80.00 <p class="Currency">€</p></h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="SubmitSection">
-            <button class="SubmitBtn">
+            <button type="submit" class="SubmitBtn">
                 <h1 class="SubmitTxt">Esitan taotluse</h1>
                 <img class="Arrow" src="./Styles/arrow-point-to-right.png" alt="Arrow"/>
             </button>

@@ -119,3 +119,7 @@
     .rs-scale { 
       margin-left: 16px;
     }
+
+    body > form > div.TwoBoxes > div.SliderBox > div.Slider > div > div > div > div.rs-scale > span:nth-child(248) > ins{
+      padding-right: 80px;
+    }
