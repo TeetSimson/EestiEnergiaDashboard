@@ -38,10 +38,10 @@
         <div class="Title">
             <h1>Kuumakse kalkulaator</h1>
         </div>
-        <h2 class="SubTitle">Teenus:</h2>
+        <h2 class="SubTitle Service">Teenus:</h2>
         <div class="RadioButtons">
            
-              <label class="CheckButton RadioContainer">
+              <label id="SunBox" class="CheckButton RadioContainer">
                 <p class="BoxTitle">Päikesepaneelid</p> 
                 <input type="radio" 
                     id="Sun" 
@@ -53,7 +53,7 @@
                 <span class="checkmark"></span>
               </label>
               
-              <label class="CheckButton RadioContainer">
+              <label id="PumpBox" class="CheckButton RadioContainer">
                 <p class="BoxTitle">Soojuspump</p> 
                 <input type="radio" 
                     id="Pump" 
@@ -64,7 +64,7 @@
                 <span class="checkmark"></span>
             </label>
 
-            <label class="CheckButton RadioContainer">
+            <label id="GasBox" class="CheckButton RadioContainer">
                 <p class="BoxTitle">Elektritööd või<br>gaasitööd</p> 
                 <input type="radio" 
                     id="Gas" 
@@ -75,7 +75,7 @@
                 <span class="checkmark"></span>
             </label>
 
-            <label class="CheckButton RadioContainer">
+            <label id="OffGridBox" class="CheckButton RadioContainer">
                 <p class="BoxTitle">Off-Grid võrguvaba<br>elekter</p> 
                 <input type="radio" 
                     id="OffGrid" 
@@ -86,7 +86,7 @@
                 <span class="checkmark"></span>
             </label>
 
-            <label class="CheckButton RadioContainer">
+            <label id="ElectricCarsBox" class="CheckButton RadioContainer">
                 <p class="BoxTitle">Elektriautode<br>laadimislahendused</p> 
                 <input type="radio" 
                     id="ElectricCars" 
@@ -109,7 +109,7 @@
                        
                     </div>
                     
-                    <script src="./Scripts/rSlider.min.js"></script>
+                    <script src="./Scripts/Slider.js"></script>
                     <script>
                         (function () {
                             'use strict';
@@ -130,17 +130,16 @@
                                     },
                                     CreditValue: CreditValue
                                 });
-                
+                                var removeThis = document.querySelector("body > form > div.TwoBoxes > div.SliderBox > div.Slider > div > div > div > div.rs-scale > span:nth-child(247)");
+                                removeThis.remove();
                             };
                             window.onload = init;
-
                             
                         })();
-
                     </script>
                 </div>
                 <div class="Period">
-                    <h2>Periood:</h2>
+                    <h2>Periood: <strong>*</strong></h2>
 
                     <select name="PeriodDrop" 
                         id="PeriodDrop" 
@@ -172,7 +171,7 @@
                     </select>
                 </div>
                 <div class="Deposit">
-                    <h2>Sissemakse (eur):</h2>
+                    <h2>Sissemakse (eur): <strong>*</strong></h2>
                     <input type="number" 
                         id="DepositInput" 
                         min="0" max="25000"
@@ -211,13 +210,13 @@
                 <div class="LineBox">
                     <div class="Line">
                         <p class="LeftText">Projekti maksumus</p>
-                        <h2 id="ProjectCost" class="RightText">20 184 <p class="Currency Secondary">€</p></h2>
+                        <h2 id="ProjectCost" class="RightText">5000 <p class="Currency Secondary">€</p></h2>
                     </div>
                 </div>
                 <div class="LineBox Colored">
                     <div class="Line">
                         <h2 class="LeftText Total">Kuumakse</h2>
-                        <h2 id="MonthlyPayment" class="RightText TotalSum">80.00 <p class="Currency">€</p></h2>
+                        <h2 id="MonthlyPayment" class="RightText TotalSum">199.92 <p class="Currency">€</p></h2>
                     </div>
                 </div>
             </div>
@@ -229,5 +228,11 @@
             </button>
         </div>
     </div>
+
+    <script>
+        // Checkbox style
+        let lastChangedBox = document.getElementById("SunBox")
+        lastChangedBox.setAttribute("style",'background: #f7fafa;');
+    </script>
 </body>
 </html>

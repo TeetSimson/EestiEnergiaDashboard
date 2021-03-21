@@ -1,36 +1,46 @@
-function GetValues() {
-    console.log(sliderValue);
-
-}
-
 function SunSelect() {
+    lastChangedBox.setAttribute("style",'background: white;');
+    lastChangedBox = document.getElementById("SunBox")
+    lastChangedBox.setAttribute("style",'background: #f7fafa;');
     checkbox = 'Sun';
-    periodValue = document.getElementById("PeriodDrop").value = 60;
     onInputChange();
+    periodValue = document.getElementById("PeriodDrop").value = 60;
 }
 
 function PumpSelect() {
+    lastChangedBox.setAttribute("style",'background: white;');
+    lastChangedBox = document.getElementById("PumpBox")
+    lastChangedBox.setAttribute("style",'background: #f7fafa;');
     checkbox = 'Pump';
-    periodValue = document.getElementById("PeriodDrop").value = 48;
     onInputChange();
+    periodValue = document.getElementById("PeriodDrop").value = 48;
 }
 
 function GasSelect() {
+    lastChangedBox.setAttribute("style",'background: white;');
+    lastChangedBox = document.getElementById("GasBox")
+    lastChangedBox.setAttribute("style",'background: #f7fafa;');    
     checkbox = 'Gas';
-    periodValue = document.getElementById("PeriodDrop").value = 48;
     onInputChange();
+    periodValue = document.getElementById("PeriodDrop").value = 48;
 }
 
 function OffGridSelect() {
+    lastChangedBox.setAttribute("style",'background: white;');
+    lastChangedBox = document.getElementById("OffGridBox")
+    lastChangedBox.setAttribute("style",'background: #f7fafa;');    
     checkbox = 'OffGrid';
-    periodValue = document.getElementById("PeriodDrop").value = 60;
     onInputChange();
+    periodValue = document.getElementById("PeriodDrop").value = 60;
 }
 
 function ElectricCarsSelect() {
+    lastChangedBox.setAttribute("style",'background: white;');
+    lastChangedBox = document.getElementById("ElectricCarsBox")
+    lastChangedBox.setAttribute("style",'background: #f7fafa;');    
     checkbox = 'ElectricCars';
-    periodValue = document.getElementById("PeriodDrop").value = 48;
     onInputChange();
+    periodValue = document.getElementById("PeriodDrop").value = 48;
 }
 
 function onInputChange() {
@@ -44,10 +54,18 @@ function onInputChange() {
     const monthlyPayment = document.getElementById("MonthlyPayment");
     const list = document.getElementById("PeriodDrop");
 
+    // Get values
     let periodValue = parseInt(document.getElementById("PeriodDrop").value);
     let deposit = document.getElementById("DepositInput").value;
     let projectCostValue = parseInt(sliderValue);
     if (projectCostValue == 25) projectCostValue = 25000;
+
+    // For adding € symbol to numbers
+    let eur = document.createElement("p");        
+    let eurText = document.createTextNode(" €");
+    eur.appendChild(eurText);
+    eur.setAttribute("class", 'Eur')
+    eur.setAttribute("style", 'display: inline; font-size: 20px;')
 
     if (deposit === '') // If no deposit calculate with 0
         deposit = 0;
@@ -62,10 +80,16 @@ function onInputChange() {
     // PV
     if (checkbox == 'Sun') {
         if (hidden) {
-            for (var i=0; i<8; i++) {
+            // Remove list
+            while (list.firstChild) {
+                list.removeChild(list.lastChild);
+            }
+
+            // Create 6-120
+            for (var i=0; i<20; i++) {
                 opt = document.createElement("OPTION");
-                opt.setAttribute("value",78+i*6);
-                let text = document.createTextNode(78+i*6 + " kuud");
+                opt.setAttribute("value",6+i*6);
+                let text = document.createTextNode(6+i*6 + " kuud");
                 opt.appendChild(text);
                 document.getElementById("PeriodDrop").appendChild(opt); 
             }
@@ -76,20 +100,32 @@ function onInputChange() {
         fee.textContent = '50 €';
         monthlyFee.textContent = '1 €';
         period.textContent = periodValue + ' kuud';
-        projectCost.textContent = projectCostValue;
+        projectCost.textContent = projectCostValue + ' €';
 
         let monthlyPaymentValue = parseFloat(((projectCostValue * 1.079) / periodValue) + 50 + periodValue);
         monthlyPayment.textContent = monthlyPaymentValue.toFixed(2);
+        monthlyPayment.appendChild(eur)
     
     // Soojuspumbad
     } else if (checkbox == 'Pump') {
         if (projectCostValue < 2000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+           if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '7,90 %';
@@ -98,13 +134,25 @@ function onInputChange() {
             contractFee = 30;
         }
         else if (projectCostValue < 6000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
+
             intrest.textContent = '6,50 %';
             fee.textContent = '20 €';
             perc = 1.065;
@@ -112,14 +160,23 @@ function onInputChange() {
         }
         else {
             if (hidden) {
-                for (var i=0; i<8; i++) {
+                saveValue = document.getElementById("PeriodDrop").value
+
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+    
+                // Create 6-120
+                for (var i=0; i<20; i++) {
                     opt = document.createElement("OPTION");
-                    opt.setAttribute("value",78+i*6);
-                    let text = document.createTextNode(78+i*6 + " kuud");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
                     opt.appendChild(text);
                     document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = false;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '5,90 %';
@@ -129,20 +186,31 @@ function onInputChange() {
         }
         monthlyFee.textContent = '1 €';
         period.textContent = periodValue + ' kuud';
-        projectCost.textContent = projectCostValue;
+        projectCost.textContent = projectCostValue + ' €';
 
         let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee + periodValue);
-        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2);
+        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
 
     // Elektriautode laadijad
     } else if (checkbox == 'ElectricCars') {
         if (projectCostValue < 2000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '5,90 %';
@@ -151,12 +219,23 @@ function onInputChange() {
             contractFee = 50;
         }
         else if (projectCostValue < 6000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '4,50 %';
@@ -166,14 +245,23 @@ function onInputChange() {
         }
         else {
             if (hidden) {
-                for (var i=0; i<8; i++) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+    
+                // Create 6-120
+                for (var i=0; i<20; i++) {
                     opt = document.createElement("OPTION");
-                    opt.setAttribute("value",78+i*6);
-                    let text = document.createTextNode(78+i*6 + " kuud");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
                     opt.appendChild(text);
                     document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = false;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '3,90 %';
@@ -183,20 +271,31 @@ function onInputChange() {
         }
         monthlyFee.textContent = '2 €';
         period.textContent = periodValue + ' kuud';
-        projectCost.textContent = projectCostValue;
+        projectCost.textContent = projectCostValue + ' €';
 
         let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee + (2*periodValue));
-        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2);
+        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
 
     // Võrguvaba elektrijaam Off-grid
     } else if (checkbox == 'OffGrid') {
         if (projectCostValue < 2000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '7,90 %';
@@ -205,12 +304,23 @@ function onInputChange() {
             contractFee = 30;
         }
         else if (projectCostValue < 6000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '6,50 %';
@@ -219,38 +329,58 @@ function onInputChange() {
             contractFee = 20;
         }
         else {
-            intrest.textContent = '5,90 %';
-            fee.textContent = '20 €';
-            perc = 1.039;
-            contractFee = 20;
-
             if (hidden) {
-                for (var i=0; i<8; i++) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+    
+                // Create 6-120
+                for (var i=0; i<20; i++) {
                     opt = document.createElement("OPTION");
-                    opt.setAttribute("value",78+i*6);
-                    let text = document.createTextNode(78+i*6 + " kuud");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
                     opt.appendChild(text);
                     document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = false;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
+
+            intrest.textContent = '5,90 %';
+            fee.textContent = '20 €';
+            perc = 1.039;
+            contractFee = 20;
         }
         monthlyFee.textContent = '0 €';
         period.textContent = periodValue + ' kuud';
-        projectCost.textContent = projectCostValue;
+        projectCost.textContent = projectCostValue + ' €';
 
         let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee);
-        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2);
+        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
 
     // Elektri- ja gaasitööd     
     } else if (checkbox == 'Gas') {
         if (projectCostValue < 1000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '9,90 %';
@@ -260,12 +390,23 @@ function onInputChange() {
             monthlyFee.textContent = '1 €';
         } 
         else if (projectCostValue < 2000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '8,90 %';
@@ -275,12 +416,23 @@ function onInputChange() {
             monthlyFee.textContent = '1 €';
         }
         else if (projectCostValue < 6000) {
-            if (hidden === false){
-                // Change dropdown
-                for (var i=0; i<16; i++) {  
-                    list.removeChild(list.lastChild); 
+            if (!hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+                // Create 6-72
+                for (var i=0; i<12; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
                 }
                 hidden = true;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
             }
 
             intrest.textContent = '7,50 %';
@@ -290,28 +442,37 @@ function onInputChange() {
             monthlyFee.textContent = '0 €';
         }
         else {
+            if (hidden) {
+                saveValue = document.getElementById("PeriodDrop").value
+                
+                // Remove list
+                while (list.firstChild) {
+                    list.removeChild(list.lastChild);
+                }
+    
+                // Create 6-120
+                for (var i=0; i<20; i++) {
+                    opt = document.createElement("OPTION");
+                    opt.setAttribute("value",6+i*6);
+                    let text = document.createTextNode(6+i*6 + " kuud");
+                    opt.appendChild(text);
+                    document.getElementById("PeriodDrop").appendChild(opt); 
+                }
+                hidden = false;
+                periodValue = document.getElementById("PeriodDrop").value = saveValue;
+            }
+
             intrest.textContent = '6,90 %';
             fee.textContent = '20 €';
             perc = 1.069;
             contractFee = 20;
             monthlyFee.textContent = '0 €';
-
-            if (hidden) {
-                for (var i=0; i<8; i++) {
-                    opt = document.createElement("OPTION");
-                    opt.setAttribute("value",78+i*6);
-                    let text = document.createTextNode(78+i*6 + " kuud");
-                    opt.appendChild(text);
-                    document.getElementById("PeriodDrop").appendChild(opt); 
-                }
-                hidden = false;
-            }
         }
         period.textContent = periodValue + ' kuud';
-        projectCost.textContent = projectCostValue;
+        projectCost.textContent = projectCostValue + ' €';
 
         let monthlyPaymentValue = parseFloat(((projectCostValue * perc) / periodValue) + contractFee);
-        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2);
+        monthlyPayment.textContent = monthlyPaymentValue.toFixed(2) + ' €';
     }
     
 }

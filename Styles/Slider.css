@@ -87,7 +87,7 @@
       color: #333;
       display: inline-block;
       font-size: 16px;
-      margin-top: 20px;
+      margin-top: 25px;
       text-decoration: none;
     }
     .rs-container.disabled .rs-scale span ins {
@@ -117,7 +117,7 @@
     }
     
     .rs-scale { 
-      margin-left: 16px;
+      margin-left: 20px;
     }
 
     body > form > div.TwoBoxes > div.SliderBox > div.Slider > div > div > div > div.rs-scale > span:nth-child(248) > ins{

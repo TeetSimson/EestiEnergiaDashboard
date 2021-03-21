@@ -49,10 +49,10 @@
   
   /* On mouse-over, add a grey background color */
   .RadioContainer:hover input ~ .checkmark {
-    background-color: #ccc;
+    background-color: rgb(245, 244, 244);
   }
-  
-  /* When the checkbox is checked, add a blue background */
+
+  /* When the checkbox is checked, add a green background */
   .RadioContainer input:checked ~ .checkmark {
     background-color: #34b233;
   }
