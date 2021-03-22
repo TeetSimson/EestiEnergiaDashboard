@@ -7,7 +7,7 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
-h1{
+h1 {
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -79,7 +79,7 @@ h2 {
     min-width: 300px;
 }
 
-.SubmitSection{
+.SubmitSection {
     margin-top: 40px;
     display: flex;
     justify-content: center;
@@ -100,7 +100,7 @@ button {
     cursor: pointer;
   }
 
-.SubmitTxt{
+.SubmitTxt {
     display: inline-block;
     font-size: 20px;
 }
@@ -153,11 +153,11 @@ button:hover {
 }
 
 @media only screen and (max-width:590px) {
-    .WhiteBox{
+    .WhiteBox {
         padding: 50px;
     }
 
-    h2{
+    h2 {
         font-size: 15px;
     }
 }
@@ -183,7 +183,7 @@ button:hover {
         padding: 40px;
     }
 
-    h2{
+    h2 {
         font-size: 12px;
     }
 }

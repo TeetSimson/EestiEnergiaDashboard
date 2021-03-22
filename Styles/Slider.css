@@ -1,7 +1,4 @@
-.Slider {
-  margin-top: 30px;
-}
-
+/* Hide default slider */
 #SliderInput {
   -webkit-appearance: none;
   width: 100%;
@@ -11,6 +8,7 @@
   outline: none;
 }
 
+/* Hide default slider thumb */
 #SliderInput::-webkit-slider-thumb {
   -webkit-appearance: none;
   position: relative;
@@ -20,6 +18,7 @@
   cursor: pointer;
 }
 
+/* Everything moves with thumb */
 #Thumb {
   height: 1px;
   width: 1px;
@@ -29,7 +28,8 @@
   margin-bottom: -25px;
 }
 
-.SelectThumb {
+/* Thumb aka slide button */
+#SelectThumb {
   height: 25px;
   width: 25px;
   position: absolute;
@@ -38,7 +38,7 @@
   bottom: 0;
 }
 
-#DisplayValue{
+#DisplayValue {
   width: 90px;
   height: 30px;
   position: absolute;
@@ -56,6 +56,7 @@
   pointer-events: none;
 }
 
+/* Small triangle under value box */
 #DisplayValue::after{
   content: '';
   border-top: 10px solid #34b233;
@@ -67,6 +68,7 @@
   pointer-events: none;
 }
 
+/* Progress bar */
 #Progress {
   width: 6vw;
   height: 10px;
@@ -97,6 +99,7 @@
   float: right;
 }
 
+/* Transparent input box under slider DisplayValue box */
 .HiddenInput{
   position: absolute;
   margin-top: -80px;

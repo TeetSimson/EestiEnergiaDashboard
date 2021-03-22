@@ -25,7 +25,7 @@
         let perc = 1; // Default Intrest percentage
         let monthFee = 0; // Default Monthly fee
         let hidden = false; // If hidden is true then the month list is 6-72 otherwise 6-120
-        let sliderValue = 0;
+        let sliderValue = 0; // Default slider Value
     </script>
     
     <title>Eesti Energia</title>
@@ -99,26 +99,30 @@
             <div class="SliderBox">
                 <h2 class="SubTitle">Summa:</h2>
                 <div class="Slider">
-                    <input id="SliderInput" type="range" min='0' max="25000" value="5000">
+                    <input id="SliderInput" type="range" min='300' max="25000" value="5000">
                     <div id="Thumb">
                         <input class="HiddenInput" 
                             value="" type="number" 
                             min="300" max="25000"
                             onkeyup="newSliderValue(this.value)">
-                        <div class="SelectThumb"></div>
+                        <div id="SelectThumb"></div>
                         <div id="DisplayValue"></div>
                         <div id="Progress"></div>
                     </div>
                     <script>
+
+                        // Selectors for slider
                         let slider = document.getElementById("SliderInput");
                         let thumb = document.getElementById("Thumb");
                         let displayValue = document.getElementById("DisplayValue");
                         let progress = document.getElementById("Progress");
+
+                        // Adjust default slider style and value
                         progress.style.left = (slider.offsetWidth - (slider.offsetWidth*((this.value/100*0.4)/100) - 12) - slider.offsetWidth) + "px";
                         progress.style.width = slider.offsetWidth*((this.value/100*0.4)/100) - 12 + "px";
-
                         displayValue.textContent = slider.value + ' €';
 
+                        // Change slider when dragged
                         slider.oninput = function (){
                             sliderValue = this.value;
                             displayValue.textContent = this.value + ' €';
@@ -128,6 +132,7 @@
                             onInputChange()
                         }
 
+                        // Correct slider when windwo resizes
                         function onReSize() {
                             progress.style.left = (slider.offsetWidth - (slider.offsetWidth*((slider.value/100*0.4)/100) - 12) - slider.offsetWidth) + "px";
                             progress.style.width = slider.offsetWidth*((slider.value/100*0.4)/100) + "px";

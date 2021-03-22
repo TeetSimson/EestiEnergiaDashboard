@@ -377,7 +377,7 @@ function onInputChange() {
 
             ///////// CHANGE THIS /////////
             intrest.textContent = '7,90 %';
-            perc = 1.059;
+            perc = 1.079;
             contractFee = 30;
             monthlyFeeValue = 0;
             ///////////// END /////////////
@@ -408,7 +408,7 @@ function onInputChange() {
 
             ///////// CHANGE THIS /////////
             intrest.textContent = '6,50 %';
-            perc = 1.045;
+            perc = 1.065;
             contractFee = 20;
             monthlyFeeValue = 0;
             ///////////// END /////////////
@@ -440,7 +440,7 @@ function onInputChange() {
             
             ///////// CHANGE THIS /////////
             intrest.textContent = '5,90 %';
-            perc = 1.039;
+            perc = 1.059;
             contractFee = 20;
             monthlyFeeValue = 0;
             ///////////// END /////////////
