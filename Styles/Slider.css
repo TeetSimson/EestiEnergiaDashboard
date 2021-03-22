@@ -1,125 +1,106 @@
-.container{
-    width: 100%;
-    margin-top: 95px;
-  }
-  .slider-container {
-    width: 100%;
-  }
-  
-  .rs-container * {
-      box-sizing: border-box;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    .rs-container {
-      height: 45px;
-      position: relative;
-    }
-    .rs-container .rs-bg,
-    .rs-container .rs-selected {
-      background-color: #ade0ad;
-      height: 12px;
-      left: 0;
-      position: absolute;
-      top: 5px;
-      width: 100%;
-      border-radius: 10px;
-    }
-    .rs-container .rs-selected {
-      background-color: #34b233;
-      transition: all 0.2s linear;
-      width: 0;
-    }
-    .rs-container.disabled .rs-selected {
-      background-color: #ccc;
-      border-color: #bbb;
-    }
-    .rs-container .rs-pointer {
-      background-color: #34b233;
-      border: 0px solid #bbb;
-      border-radius: 40px;
-      cursor: pointer;
-      height: 30px;
-      left: -10px;
-      margin-top: -5px;
-      position: absolute;
-      top: 0;
-      transition: all 0.2s linear;
-      width: 30px;
-    }
-    .rs-container.disabled .rs-pointer {
-      border-color: #ccc;
-      cursor: default;
-    }
-  
-    .rs-container.sliding .rs-pointer,
-    .rs-container.sliding .rs-selected {
-      transition: none;
-    }
-    .rs-container .rs-scale {
-      left: 0;
-      position: absolute;
-      top: 5px;
-      width: 100%;
-      white-space: nowrap;
-    }
-    .rs-container .rs-scale span {
-      float: left;
-      position: relative;
-    }
-  
-    .rs-container.rs-noscale span::before {
-      display: none;
-    }
-    .rs-container.rs-noscale span:first-child::before,
-    .rs-container.rs-noscale span:last-child::before {
-      display: block;
-    }
-    .rs-container .rs-scale span:last-child {
-      margin-left: -1px;
-      width: 0;
-    }
-    .rs-container .rs-scale span ins {
-      color: #333;
-      display: inline-block;
-      font-size: 16px;
-      margin-top: 25px;
-      text-decoration: none;
-    }
-    .rs-container.disabled .rs-scale span ins {
-      color: #999;
-    }
-    .rs-tooltip {
-      color: white;
-      width: auto;
-      min-width: 100px;
-      height: 35px;
-      background: #34b233;
-      border: 1px solid #34b233;
-      border-radius: 20px;
-      position: absolute;
-      z-index: 1;
-      transform: translate(-50%, -35px);
-      left: 13px;
-      text-align: center;
-      font-size: 16px;
-      padding: 6px 10px 0;
-      margin-top: -10px;
-    }
-  
-    .rs-container.disabled .rs-tooltip {
-      border-color: #ccc;
-      color: #999;
-    }
-    
-    .rs-scale { 
-      margin-left: 20px;
-    }
+.Slider {
+  margin-top: 30px;
+}
 
-    body > form > div.TwoBoxes > div.SliderBox > div.Slider > div > div > div > div.rs-scale > span:nth-child(248) > ins{
-      padding-right: 80px;
-    }
+#SliderInput {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background-color: #ade0ad;
+  border-radius: 20px;
+  outline: none;
+}
+
+#SliderInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  z-index: 3;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+#Thumb {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  z-index: 2;
+  margin-left: 5.4%;
+  margin-bottom: -25px;
+}
+
+.SelectThumb {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  background-color: #34b233;
+  border-radius: 30px;
+  bottom: 0;
+}
+
+#DisplayValue{
+  width: 90px;
+  height: 30px;
+  position: absolute;
+  margin-top: -78px;
+  margin-left: -32px;
+  background-color: #34b233;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 0;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  pointer-events: none;
+}
+
+#DisplayValue::after{
+  content: '';
+  border-top: 10px solid #34b233;
+  border-left: 6px solid rgba(0, 0, 0, 0);
+  border-right: 6px solid rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: -9px;
+  left: 38px;
+  pointer-events: none;
+}
+
+#Progress {
+  width: 6vw;
+  height: 10px;
+  background-color: #34b233;
+  border-radius: 20px;
+  position: absolute;
+  top: -16px;
+  left: -104px;
+  pointer-events: none;
+}
+
+.SliderLabels{
+  width: 100%;
+  margin-top: -55px;
+  margin-bottom: 9px;
+}
+
+#MinSlider {
+  font-family: 'Nunito', sans-serif;
+  position: relative;
+  display: inline-block;
+}
+
+#MaxSlider {
+  font-family: 'Nunito', sans-serif;
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+
+.HiddenInput{
+  position: absolute;
+  margin-top: -80px;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+}

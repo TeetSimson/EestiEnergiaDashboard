@@ -21,20 +21,16 @@
 
     <script src="./Scripts/script.js"></script>
     <script>
-        let sliderValue = null;
-        const setSliderValue = 5000; //// CHANGE THIS //// Initial slider value
-        let CreditValue = setSliderValue/100-3; 
-        let slider = null;
         let checkbox = 'Sun'; //// CHANGE THIS //// Päiksepaneelid checked initially 'Sun'; 'Pump'; 'Gas'; 'OffGrid'; 'ElectricCars'; 
         let perc = 1; // Default Intrest percentage
         let monthFee = 0; // Default Monthly fee
         let hidden = false; // If hidden is true then the month list is 6-72 otherwise 6-120
-
+        let sliderValue = 0;
     </script>
     
     <title>Eesti Energia</title>
 </head>
-<body>
+<body onresize="onReSize()">
     <form class="WhiteBox">
         <div class="Title">
             <h1>Kuumakse kalkulaator</h1>
@@ -103,43 +99,48 @@
             <div class="SliderBox">
                 <h2 class="SubTitle">Summa:</h2>
                 <div class="Slider">
-                    <div class="container">
-                        <div class="slider-container">
-                            <input type="text" id="slider3" class="slider" />
-                        </div>
-                       
+                    <input id="SliderInput" type="range" min='0' max="25000" value="5000">
+                    <div id="Thumb">
+                        <input class="HiddenInput" 
+                            value="" type="number" 
+                            min="300" max="25000"
+                            onkeyup="newSliderValue(this.value)">
+                        <div class="SelectThumb"></div>
+                        <div id="DisplayValue"></div>
+                        <div id="Progress"></div>
                     </div>
-                    
-                    <script src="./Scripts/Slider.js"></script>
                     <script>
-                        (function () {
-                            'use strict';
-                            
-                            var init = function () {   
-                                             
-                                // Creating New slider object
-                                slider = new rSlider({
-                                    target: '#slider3',
-                                    values: {min: 300, max: 25000},
-                                    step: 100,
-                                    range: false,
-                                    set: [5000],
-                                    scale: true,
-                                    labels: false,
-                                    onChange: function (vals) {
-                                        sliderValue = vals;
-                                        onInputChange();
-                                    },
-                                    CreditValue: CreditValue
-                                });
-                                var removeThis = document.querySelector("body > form > div.TwoBoxes > div.SliderBox > div.Slider > div > div > div > div.rs-scale > span:nth-child(247)");
-                                removeThis.remove();
-                            };
-                            window.onload = init;
-                            
-                        })();
+                        let slider = document.getElementById("SliderInput");
+                        let thumb = document.getElementById("Thumb");
+                        let displayValue = document.getElementById("DisplayValue");
+                        let progress = document.getElementById("Progress");
+                        progress.style.left = (slider.offsetWidth - (slider.offsetWidth*((this.value/100*0.4)/100) - 12) - slider.offsetWidth) + "px";
+                        progress.style.width = slider.offsetWidth*((this.value/100*0.4)/100) - 12 + "px";
+
+                        displayValue.textContent = slider.value + ' €';
+
+                        slider.oninput = function (){
+                            sliderValue = this.value;
+                            displayValue.textContent = this.value + ' €';
+                            progress.style.left = (slider.offsetWidth - (slider.offsetWidth*((this.value/100*0.4)/100) - 12) - slider.offsetWidth) + "px";
+                            progress.style.width = slider.offsetWidth*((this.value/100*0.4)/100) + "px";
+                            thumb.style.marginLeft = slider.offsetWidth*((this.value/100*0.4)/100) - 12 + "px";
+                            onInputChange()
+                        }
+
+                        function onReSize() {
+                            progress.style.left = (slider.offsetWidth - (slider.offsetWidth*((slider.value/100*0.4)/100) - 12) - slider.offsetWidth) + "px";
+                            progress.style.width = slider.offsetWidth*((slider.value/100*0.4)/100) + "px";
+                            thumb.style.marginLeft = slider.offsetWidth*((slider.value/100*0.4)/100) - 12 + "px";
+                        }
                     </script>
+
                 </div>
+                <div class="SliderLabels">
+                    <div id="MinSlider">300 €</div>
+                    <div id="MaxSlider">25 000 €</div>
+                </div>
+                
                 <div class="Period">
                     <h2>Periood: <strong class="RedStar">*</strong></h2>
 

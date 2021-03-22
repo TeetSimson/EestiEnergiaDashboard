@@ -1,3 +1,17 @@
+// Change Slider when input comes from somewhere else
+function newSliderValue(value){
+    displayValue.textContent = value + ' €';
+    if (value > 25000 || value < 300) return false;
+    sliderValue = value;
+    slider.value = value;
+    displayValue.textContent = value + ' €';
+    progress.style.left = (slider.offsetWidth - (slider.offsetWidth*((value/100*0.4)/100) - 12) - slider.offsetWidth) + "px";
+    progress.style.width = slider.offsetWidth*((value/100*0.4)/100) + "px";
+    thumb.style.marginLeft = slider.offsetWidth*((value/100*0.4)/100) - 12 + "px";
+    onInputChange()
+}
+
+
 // PV
 function SunSelect() {
     lastChangedBox.setAttribute("style",'background: white;');
@@ -6,6 +20,7 @@ function SunSelect() {
     checkbox = 'Sun';
     onInputChange();
     ///////// CHANGE THIS /////////
+    newSliderValue(5000);
     periodValue = document.getElementById("PeriodDrop").value = 60; // Default month value
     ///////////// END /////////////
 }
@@ -18,6 +33,7 @@ function PumpSelect() {
     checkbox = 'Pump';
     onInputChange();
     ///////// CHANGE THIS /////////
+    newSliderValue(1000);
     periodValue = document.getElementById("PeriodDrop").value = 48; // Default month value
     ///////////// END /////////////
 }
@@ -30,6 +46,7 @@ function GasSelect() {
     checkbox = 'Gas';
     onInputChange();
     ///////// CHANGE THIS /////////
+    newSliderValue(1000);
     periodValue = document.getElementById("PeriodDrop").value = 48; // Default month value
     ///////////// END /////////////
 }
@@ -42,6 +59,7 @@ function OffGridSelect() {
     checkbox = 'OffGrid';
     onInputChange();
     ///////// CHANGE THIS /////////
+    newSliderValue(5000);
     periodValue = document.getElementById("PeriodDrop").value = 60; // Default month value
     ///////////// END /////////////
 }
@@ -54,6 +72,7 @@ function ElectricCarsSelect() {
     checkbox = 'ElectricCars';
     onInputChange();
     ///////// CHANGE THIS /////////
+    newSliderValue(1000);
     periodValue = document.getElementById("PeriodDrop").value = 48; // Default month value
     ///////////// END /////////////
 }
