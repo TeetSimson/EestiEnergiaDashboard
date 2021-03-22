@@ -12,6 +12,8 @@
 #SliderInput::-webkit-slider-thumb {
   -webkit-appearance: none;
   opacity: 0;
+  background-color: #00000000;
+  border: 0px;
   position: relative;
   z-index: 3;
   width: 25px;
