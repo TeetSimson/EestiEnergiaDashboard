@@ -138,6 +138,26 @@
                             progress.style.width = slider.offsetWidth*((slider.value/100*0.4)/100) + "px";
                             thumb.style.marginLeft = slider.offsetWidth*((slider.value/100*0.4)/100) - 12 + "px";
                         }
+
+                        const mediaQuery1 = window.matchMedia('(max-width:470px)');
+                        const mediaQuery2 = window.matchMedia('(max-width:590px)');
+                        const mediaQuery3 = window.matchMedia('(max-width:1142px)');
+                        const mediaQuery4 = window.matchMedia('(max-width:2590px)');
+
+                        // Overwrite the slider values when specific media query is loaded
+                        if (mediaQuery1.matches) {
+                            onReSize();
+                        }
+                        else if (mediaQuery2.matches) {
+                            onReSize();
+                        }
+                        else if (mediaQuery3.matches) {
+                            onReSize();
+                        }
+                        else if (mediaQuery4.matches) {
+                            onReSize();
+                        }
+
                     </script>
 
                 </div>

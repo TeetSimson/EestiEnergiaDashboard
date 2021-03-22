@@ -68,7 +68,6 @@ h2 {
     width: 40%;
     margin-top: 40px;
     margin-right: 80px;
-
     min-width: 400px;
 }
 
@@ -121,6 +120,10 @@ button:hover {
     color: red;
 }
 
+@media only screen and (max-width:2590px) {
+
+}
+
 @media only screen and (max-width:1142px) {
     .SliderBox {
         margin-right: 0px;
@@ -150,6 +153,10 @@ button:hover {
     .Deposit {
         margin-right: 10px;
     }
+
+    #DepositInput {
+        height: calc(5vh + 4px) !important;
+    }
 }
 
 @media only screen and (max-width:590px) {
@@ -157,21 +164,17 @@ button:hover {
         padding: 50px;
     }
 
+    .SliderBox {
+        width: 350px;
+        min-width: 250px;
+    }
+
     h2 {
         font-size: 15px;
     }
+
 }
 
-@media only screen and (max-width:470px) {
-    .SliderBox {
-        width: 300px;
-        min-width: 300px;
-    }
-
-    .WhiteBox {
-        padding: 45px;
-    }
-}
 
 @media only screen and (max-width:470px) {
     .SliderBox {
@@ -186,4 +189,5 @@ button:hover {
     h2 {
         font-size: 12px;
     }
+
 }
