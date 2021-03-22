@@ -158,9 +158,6 @@ button:hover {
         height: calc(5vh + 4px) !important;
     }
 
-    #Thumb{
-        margin-bottom: -45px !important;
-    }
 }
 
 @media only screen and (max-width:590px) {
